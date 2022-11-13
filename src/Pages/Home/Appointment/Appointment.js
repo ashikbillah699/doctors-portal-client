@@ -4,12 +4,12 @@ import AppionmentBg from '../../../assets/images/appointment.png'
 
 const Appointment = () => {
     return (
-        <section className='max-h-[636px] '
+        <section className='mt-44'
             style={{
                 background: `url(${AppionmentBg})`
             }}
         >
-            <div className="hero ">
+            <div className="hero">
 
                 <div className="hero-content flex-col lg:flex-row">
                     <img alt='' src={DoctorAppionment} className="-mb-4 -mt-28 lg:w-1/2 rounded-lg shadow-2xl hidden lg:block" />
