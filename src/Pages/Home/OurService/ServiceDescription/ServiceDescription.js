@@ -4,7 +4,7 @@ import serviceImg from '../../../../assets/images/treatment.png'
 const ServiceDescription = () => {
     return (
         <div className="card card-side my-36 ">
-            <figure className=" pl-52"><img className='max-w-[430px] max-h-[576px] rounded-md' src={serviceImg} alt="" /></figure>
+            <figure className=" pl-52"><img className='md:max-w-[430px] md:max-h-[576px] rounded-md' src={serviceImg} alt="" /></figure>
             <div className='w-1/2'>
                 <div className="card-body pl-24 pr-20 ">
                     <div className='mt-20'>

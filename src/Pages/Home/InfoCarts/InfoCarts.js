@@ -3,7 +3,7 @@ import React from 'react';
 const InfoCarts = ({ data }) => {
     const { image, details, bgcolor, name } = data
     return (
-        <div className={`card card-side bg-base-100 shadow-xl text-white p-6 ${bgcolor}`}>
+        <div className={`card md:card-side bg-base-100 shadow-xl text-white p-6 ${bgcolor}`}>
             <figure>
                 <img src={image} alt="Movie" />
             </figure>
