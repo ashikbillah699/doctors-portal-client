@@ -8,7 +8,7 @@ const Header = () => {
         <li><Link to='/appointment'>Appointment</Link></li>
         <li><Link to='/'>Reviews</Link></li>
         <li><Link to='/'>Contact Us</Link></li>
-        <li><Link to='/'>Login</Link></li>
+        <li><Link to='/Login'>Login</Link></li>
     </React.Fragment>
     return (
         <div className="navbar bg-base-100 container mx-auto">

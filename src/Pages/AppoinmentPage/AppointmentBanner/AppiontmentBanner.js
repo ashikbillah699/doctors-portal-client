@@ -1,7 +1,6 @@
 import BannerBg from '../../../assets/images/Bannerbg.png';
 import BannerImg from '../../../assets/images/Banner-chair.png'
 import { DayPicker } from 'react-day-picker';
-import { format } from 'date-fns';
 
 const AppiontmentBanner = ({ selected, setSelected }) => {
     return (
@@ -21,7 +20,6 @@ const AppiontmentBanner = ({ selected, setSelected }) => {
                             selected={selected}
                             onSelect={setSelected}
                         />
-                        <p>you selected a day : {format(selected, 'PP')}</p>
                     </div>
                 </div>
             </div>
