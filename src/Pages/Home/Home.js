@@ -1,4 +1,3 @@
-import React from 'react';
 import Appointment from './Appointment/Appointment';
 import Banner from './Banner/Banner';
 import Contac from './Contac/Contac';
