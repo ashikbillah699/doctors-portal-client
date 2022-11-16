@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { signIn } = useContext(AuthContext);
+    const [error, setError] = useState()
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.form?.pathname || '/';
+
     const handleLogin = data => {
         console.log(data)
+        setError('')
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            })
     }
     return (
         <div className='h-[900px] flex justify-center items-center'>
@@ -25,6 +44,7 @@ const Login = () => {
                             { minLength: { value: 6, message: "please enter 6 caracters" } })}
                             className="input input-bordered w-96 max-w-xs" required />
                         {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
+                        {error && < small className="font-semibold text-red-600">{error}</small>}
                         <small className="font-semibold">Forget Passdword?</small>
 
                     </div>

@@ -1,20 +1,37 @@
-import React, { useContext } from 'react';
+
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const { createUser } = useContext(AuthContext)
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser, updateUser } = useContext(AuthContext);
+    const [error, setError] = useState();
+    const navigate = useNavigate()
+
 
     const handleLogin = data => {
+        setError('')
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                toast(' Your account is Successfull ')
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        navigate('/')
+                    })
+                    .catch(error => console.error(error))
             })
-            .catch(error => console.error(error))
-
+            .catch(error => {
+                console.error(error)
+                setError(error.message);
+            })
     }
     return (
         <div className='h-[900px] flex justify-center items-center'>
@@ -46,6 +63,7 @@ const SignUp = () => {
                             })}
                             className="input input-bordered w-96 max-w-xs" required />
                         {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
+                        {error && < small className="font-semibold text-red-600">{error}</small>}
                     </div>
                     <input className='btn bg-accent w-full mb-2' type="submit" value="Sign Up" required />
                     <small className='font-semibold mb-2'>All ready you haven account <Link className='text-secondary font-semibold' to='/Login'>Login</Link></small>
